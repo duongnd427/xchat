@@ -1,0 +1,441 @@
+@import '../../../../styles/color';
+@import '../../../../styles/mixin';
+@import '../../../../styles/font';
+@import '../../../../styles/largeScreen';
+
+.live-comment {
+  margin-top: 10px;
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: #FFFFFF;
+    font-family: $fontFamilyMedium;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 17px;
+    text-decoration: none;
+    list-style-type: none;
+    overflow-x: hidden;
+    word-break: break-word;
+  }
+
+  body {
+    background: #181818;
+    box-shadow: 0px 0px 20px rgba(241, 241, 241, 0.1);
+    border-radius: 10px 10px 0px 0px;
+  }
+
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .container {
+    padding: 15px;
+    margin-bottom: 65px;
+    position: relative;
+
+
+    > img {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      z-index: -1;
+    }
+  }
+
+  .chat-list {
+    margin: 0 15px;
+
+    li {
+      margin-top: 16px;
+      display: flex;
+
+
+      .donate {
+        margin-bottom: 16px;
+      }
+
+      .avatar {
+        width: 30px;
+        height: 30px;
+        display: block;
+        max-width: 30px;
+        flex: 0 0 30px;
+        object-fit: cover;
+      }
+
+      .avatar img {
+        max-width: 100%;
+      }
+
+      div {
+        margin-left: 6px;
+      }
+
+      .username {
+        font-size: 12px;
+        margin-bottom: 5px;
+        color: #757678;
+      }
+
+      .comment {
+        font-family: $fontFamilyRegular;
+      }
+
+      .comment-donate {
+        font-family: $fontFamilyRegular;
+        color: #E6C229;
+      }
+
+      .comment-follow {
+        font-family: $fontFamilyRegular;
+        color: #757678;
+      }
+    }
+  }
+
+  .img-quacute {
+    width: 18px;
+    vertical-align: middle;
+  }
+
+  .popup-donate {
+    background: #000000;
+    mix-blend-mode: normal;
+    opacity: 0.9;
+    border: 1px solid #FFFFFF;
+    border-radius: 30px 0px 0px 30px;
+    position: fixed;
+    padding: 10px 16px;
+    top: 29px;
+    width: 100%;
+
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .user-donate {
+      position: absolute;
+      left: 58px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .username {
+      font-size: 12px;
+      font-family: SFUIText-Bold;
+      margin-bottom: 5px;
+    }
+
+    .comment-donate {
+      font-family: SFUIText-Regular;
+    }
+  }
+
+  .popup-quacute {
+    position: absolute;
+    left: 145px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+  }
+
+  footer {
+    width: 100%;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    background: #2C2C2C;
+    backdrop-filter: blur(27.1828px);
+    display: flex;
+    align-items: baseline;
+    max-width: 800px;
+
+    .enter-comment {
+      width: calc(100% - 120px);
+    }
+
+    input {
+      background: #404040;
+      border-radius: 22px;
+      padding: 10px 0px 8px 15px;
+      border: none;
+      width: 100%;
+      outline: none;
+    }
+
+    .icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 20px !important;
+      display: flex;
+    }
+
+    button.donate {
+      text-align: center;
+      color: #181818;
+      background: #FFE300;
+      border-radius: 20px;
+      border: none;
+      padding: 6.5px 10px;
+    }
+
+    button.heart {
+      width: 24px;
+      display: block;
+      background: none;
+      border: none;
+      margin-left: 15px;
+    }
+  }
+
+
+  .time-cmt {
+    color: #757678;
+    //margin-left: 45vw;
+  }
+
+  .name-user-cmt {
+    //max-width: 43vw;
+    word-break: break-word;
+    //overflow: hidden;
+    //display: -webkit-box;
+    //-webkit-line-clamp: 1;
+    //-webkit-box-orient: vertical;
+    //position: absolute;
+  }
+
+  .likecmt {
+    margin-top: 5px;
+    float: left;
+    color: #757678;
+    margin-right: 23px;
+
+    img {
+      margin-top: 2px;
+      width: 16px;
+      margin-right: 7px;
+    }
+  }
+
+  .like-cmt {
+    position: relative;
+  }
+
+  .cmt {
+    margin-top: 7px;
+    float: left;
+    color: #757678;
+
+    img {
+      margin-top: 4px;
+      width: 15px;
+      margin-right: 7px;
+      position: absolute;
+    }
+
+    p {
+      margin-bottom: 3px;
+    }
+  }
+
+  .number-cmt {
+    color: #757678;
+    position: absolute;
+    margin-left: 22px !important;
+    margin-top: 3px;
+  }
+}
+
+
+.rep-cmt-show{
+  margin: 20px 15px;
+
+  .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 35%;
+    float: left;
+    object-fit: cover;
+  }
+
+  span {
+    font-size: 14px;
+  }
+
+  .info-cmt {
+    margin-left: 40px;
+  }
+
+  .time-cmt {
+    color: #757678;
+  }
+
+  .comment {
+    font-size: 14px;
+    margin-top: 5px;
+    color: #fff;
+  }
+
+  .likecmt {
+    margin-top: 5px;
+    float: left;
+    color: #757678;
+    margin-right: 23px;
+
+    img {
+      margin-top: 2px;
+      width: 16px;
+      margin-right: 7px;
+    }
+  }
+
+  .like-cmt {
+    position: relative;
+  }
+
+  .cmt {
+    margin-top: 7px;
+    float: left;
+    color: #757678;
+
+    img {
+      margin-top: 4px;
+      width: 15px;
+      margin-right: 7px;
+      position: absolute;
+    }
+
+    p {
+      margin-bottom: 3px;
+    }
+  }
+
+  .number-cmt {
+    color: #757678;
+    position: absolute;
+    margin-left: 22px !important;
+    margin-top: 3px;
+  }
+
+  .cmt-rep {
+    margin-top: 35px;
+    margin-left: 0px !important;
+  }
+  .detail-cmt-item {
+    margin-bottom: 10px;
+  }
+  .list-rep-detail {
+    margin-left: 40px;
+    .username {
+      margin-left: 0 !important;
+      font-size: 14px !important;
+    }
+
+    .comment {
+      margin-left: 0 !important;
+      font-size: 14px !important;
+    }
+  }
+}
+
+
+.input-new-cmt {
+  width: 100%;
+  padding: 15px;
+  position: fixed;
+  bottom: 0;
+  background: #2C2C2C;
+  backdrop-filter: blur(27.1828px);
+  display: flex;
+  align-items: baseline;
+  max-width: 800px;
+  margin-left: -15px;
+  height: 35px;
+
+  .enter-comment {
+    width: calc(100% - 150px);
+    margin-bottom: -4px;
+  }
+
+  textarea {
+    background: #404040;
+    border-radius: 22px;
+    padding: 10px 15px 5px 15px;
+    border: none;
+    width: 100%;
+    outline: none;
+    height: 35px;
+    resize: none;
+    color: #fff;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 50px;
+    display: flex;
+  }
+
+  .icon-avt{
+    line-height: 9px;
+  }
+
+ .avt-me {
+   width: 35px;
+   height: 35px;
+   object-fit: cover;
+   margin-right: 25px;
+   line-height: 9px;
+   border-radius: 35%;
+  }
+
+  button.donate {
+    text-align: center;
+    color: #181818;
+    background: #FFE300;
+    border-radius: 20px;
+    border: none;
+    padding: 6.5px 10px;
+  }
+
+  button.heart {
+    width: 26px;
+    display: block;
+    background: none;
+    border: none;
+    margin-left: 15px;
+  }
+}
+
+
+.header-repcmt {
+  position: relative;
+  height: 35px;
+
+  .rc_back {
+    position: absolute;
+    width: 20px;
+  }
+
+  .rc_title {
+    text-align: center;
+  }
+}

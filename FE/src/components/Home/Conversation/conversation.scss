@@ -1,0 +1,92 @@
+.conversation {
+	width: 100%;
+	.listconversation {
+		width: 400px;
+		float: left;
+		overflow-y: scroll;
+		height: 95vh;
+
+		.list_item {
+			height: 60px;
+			border-bottom: 1px solid #444444;
+			padding-top: 10px;
+			margin: 0 10px;
+			.li_avt {
+				width: 50px;
+				height: 50px;
+				object-fit: cover;
+				border-radius: 50%;
+				float: left;
+			}
+
+			.li_info {
+				margin-left: 60px;
+
+				.li_username {
+					font-weight: bold;
+					padding: 5px 0;
+				}
+
+				.li_last-msg {
+					color: #747578;
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					overflow: hidden;
+					-webkit-line-clamp: 1;
+					max-width: 230px;
+				}
+			}
+		}
+	}
+
+	.detailconversation {
+		height: 95vh;
+		overflow-y: scroll;
+
+		@mixin detail_item {
+			max-width: 700px;
+			margin: 0 20px;
+			margin-bottom: 5px;
+		}
+		.detail_item-partner {
+			@include detail_item();
+
+			.dip_avt {
+				width: 40px;
+				height: 40px;
+				object-fit: cover;
+				float: left;
+				border-radius: 50%;
+			}
+			.dip_msg {
+				margin-left: 50px;
+				width: fit-content;
+				background: red;
+				padding: 5px 10px;
+				border-radius: 20px;
+				line-height: 25px;
+			}
+		}
+
+		.detail_item-me {
+			@include detail_item();
+			float: right;
+
+			.dim_avt {
+				width: 40px;
+				height: 40px;
+				object-fit: cover;
+				float: right;
+				border-radius: 50%;
+			}
+			.dim_msg {
+				margin-right: 50px;
+				width: fit-content;
+				background: red;
+				padding: 5px 10px;
+				border-radius: 20px;
+				line-height: 25px;
+			}
+		}
+	}
+}

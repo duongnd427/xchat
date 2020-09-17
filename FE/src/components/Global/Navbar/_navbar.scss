@@ -1,0 +1,52 @@
+.navbar_bottom {
+	position: fixed;
+	z-index: 999;
+	width: 100%;
+	height: 52px;
+	bottom: 0px;
+	background: #181818;
+	padding: 6px 0px 2px 0px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	transition: bottom 0.5s;
+	box-shadow: 0px 0px 20px rgba(241, 241, 241, 0.1);
+	max-width: 800px;
+
+	a {
+		width: 20%;
+		display: inline-block;
+		text-align: center;
+		position: relative;
+		line-height: 15px;
+	}
+
+	.nbr_btn_icon {
+		display: inline-block;
+		width: 33.3%;
+		margin-top: 16px;
+
+		img {
+			width: 16px;
+		}
+
+		.bxh img:first-child {
+			height: 12px;
+		}
+
+		.bxh img:last-child {
+			height: 10px;
+		}
+	}
+
+	.nbr_avt {
+		width: 16px;
+		height: 16px;
+		object-fit: cover;
+		border-radius: 35%;
+	}
+
+	.nbr_avt-in {
+		border: 1px solid #ffffff;
+		box-sizing: border-box;
+	}
+}

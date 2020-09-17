@@ -1,0 +1,290 @@
+@import '../../../../styles/color';
+@import '../../../../styles/mixin';
+@import '../../../../styles/font';
+@import '../../../../styles/largeScreen';
+
+.live-comment {
+	margin-top: 10px;
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+		color: #ffffff;
+		font-family: $fontFamilyMedium;
+		font-size: 14px;
+		font-weight: normal;
+		font-style: normal;
+		line-height: 17px;
+		text-decoration: none;
+		list-style-type: none;
+	}
+
+	body {
+		background: #181818;
+		box-shadow: 0px 0px 20px rgba(241, 241, 241, 0.1);
+		border-radius: 10px 10px 0px 0px;
+	}
+
+	.lc__clearfix::after {
+		content: '';
+		clear: both;
+		display: table;
+	}
+
+	img {
+		width: 100%;
+	}
+
+	.container {
+		padding: 15px;
+		margin-bottom: 65px;
+		position: relative;
+
+		> img {
+			width: 100%;
+			position: absolute;
+			top: 0;
+			z-index: -1;
+		}
+	}
+
+	.lc__chat-list {
+		margin: 0 15px;
+
+		li {
+			margin-bottom: 16px;
+			display: flex;
+
+			.donate {
+				margin-bottom: 16px;
+			}
+
+			.avatar {
+				width: 30px;
+				height: 30px;
+				display: block;
+				max-width: 30px;
+				flex: 0 0 30px;
+				object-fit: cover;
+			}
+
+			.avatar img {
+				max-width: 100%;
+			}
+
+			div {
+				margin-left: 6px;
+			}
+
+			.username {
+				font-size: 12px;
+				margin-bottom: 5px;
+				color: #757678;
+			}
+
+			.comment {
+				font-family: $fontFamilyRegular;
+			}
+
+			.comment-donate {
+				font-family: $fontFamilyRegular;
+				color: #e6c229;
+			}
+
+			.comment-follow {
+				font-family: $fontFamilyRegular;
+				color: #757678;
+			}
+		}
+	}
+
+	.img-quacute {
+		width: 18px;
+		vertical-align: middle;
+	}
+
+	.popup-donate {
+		background: #000000;
+		mix-blend-mode: normal;
+		opacity: 0.9;
+		border: 1px solid #ffffff;
+		border-radius: 30px 0px 0px 30px;
+		position: fixed;
+		padding: 10px 16px;
+		top: 29px;
+		width: 100%;
+
+		.avatar {
+			width: 36px;
+			height: 36px;
+			display: block;
+			object-fit: cover;
+		}
+
+		.user-donate {
+			position: absolute;
+			left: 58px;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		.username {
+			font-size: 12px;
+			font-family: SFUIText-Bold;
+			margin-bottom: 5px;
+		}
+
+		.comment-donate {
+			font-family: SFUIText-Regular;
+		}
+	}
+
+	.popup-quacute {
+		position: absolute;
+		left: 145px;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 50px;
+	}
+
+	footer {
+		width: 100%;
+		padding: 15px;
+		position: fixed;
+		bottom: 0;
+		background: #2c2c2c;
+		backdrop-filter: blur(27.1828px);
+		display: flex;
+		align-items: baseline;
+		max-width: 800px;
+		z-index: 10;
+
+		.enter-comment {
+			width: calc(100% - 120px);
+			margin-bottom: -4px;
+		}
+
+		textarea {
+			background: #404040;
+			border-radius: 22px;
+			padding: 10px 15px 8px 15px;
+			border: none;
+			width: 100%;
+			outline: none;
+			height: 35px;
+			resize: none;
+		}
+
+		.avt-me {
+			width: 35px;
+			height: 35px;
+			object-fit: cover;
+			margin-right: 25px;
+			line-height: 9px;
+			border-radius: 35%;
+		}
+
+		.text {
+			margin-left: 65px;
+		}
+
+		.icon {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			right: 20px;
+			display: flex;
+		}
+
+		.icon-avt {
+			line-height: 9px;
+		}
+
+		button.donate {
+			text-align: center;
+			color: #181818;
+			background: #ffe300;
+			border-radius: 20px;
+			border: none;
+			padding: 8.5px 10px 6.5px 10px;
+		}
+
+		button.heart {
+			width: 26px;
+			display: block;
+			background: none;
+			border: none;
+			margin-left: 15px;
+		}
+	}
+
+	.cmt-donate {
+		height: 56px;
+		width: 90%;
+		right: 0;
+		position: absolute;
+		border: 1px solid #fff;
+		background: #000;
+		opacity: 0.9;
+		border-radius: 30px 0 0 30px;
+		animation-name: transform;
+		animation-duration: 0.8s;
+	}
+
+	@keyframes transform {
+		from {
+			right: -100%;
+		}
+		to {
+			right: 0;
+		}
+	}
+	.cd_avt {
+		width: 36px;
+		height: 36px;
+		margin: 10px 10px 10px 16px;
+		border-radius: 35%;
+		float: left;
+	}
+
+	.cd_user-donate {
+		margin-top: 10px;
+		float: left;
+		.username {
+			font-size: 12px;
+		}
+	}
+
+	.cd_item-donate {
+		float: left;
+		width: 40px;
+		margin: 8px 15px;
+	}
+}
+
+.fly-heart {
+	position: absolute;
+	background: url('../../../../styles/images/heart.svg');
+	pointer-events: none;
+	//transform: translate(-50%, -50%);
+	width: 26px;
+	height: 23px;
+	background-size: cover;
+	animation: animate 2s linear infinite;
+	z-index: 10;
+}
+
+@keyframes animate {
+	0% {
+		transform: translate(0, 100vh);
+		opacity: 1;
+	}
+	100% {
+		transform: translate(0, 25vh);
+		opacity: 1;
+	}
+}
+
+.player-videojs{
+	z-index: 8;
+}

@@ -1,0 +1,224 @@
+.tabme {
+	.me_header {
+		height: 60px;
+		font-size: 28px;
+		line-height: 33px;
+		color: #ffffff;
+		background: #181818;
+		box-shadow: 0px 0px 20px rgba(241, 241, 241, 0.1);
+		border-radius: 0px 0px 10px 10px;
+		width: 100%;
+
+		.mh_title {
+			float: left;
+			padding: 14px 15px;
+			max-width: calc(100vw - 105px);
+			word-break: break-word;
+			-webkit-line-clamp: 1;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			height: 22px;
+		}
+
+		.mh_stm {
+			img {
+				margin-top: 22px;
+			}
+		}
+
+		.mh_profile {
+			float: right;
+			padding-right: 15px;
+			margin-top: 20px;
+		}
+	}
+
+	.me_banner {
+		margin: 20px 15px;
+		border-bottom: 1px solid #363b41;
+		padding-bottom: 15px;
+		.mb_banner {
+			width: 100%;
+			border-radius: 10px;
+		}
+	}
+
+	.me_topup {
+		display: grid;
+		grid-template-columns: 33.3% 33.4% 33.3%;
+		text-align: center;
+		margin: 20px 15px;
+		border-bottom: 1px solid #363b41;
+		padding-bottom: 20px;
+
+		.mt_name {
+			font-size: 12px;
+			line-height: 14px;
+			color: #fff;
+			margin: 5px 3px;
+		}
+
+		.mt_promotion {
+			font-size: 12px;
+			line-height: 14px;
+			color: #757678;
+		}
+	}
+
+	.me_action {
+		font-size: 14px;
+		line-height: 17px;
+		color: #fff;
+		padding: 0 15px;
+		margin-top: 30px;
+
+		.ma_item {
+			margin-bottom: 30px;
+			display: inline-block;
+			width: 100%;
+		}
+		.ma_icon {
+			float: left;
+			margin-right: 10px;
+		}
+		.ma_content {
+			float: left;
+			color: #fff;
+		}
+		.ma_open {
+			float: right;
+		}
+	}
+}
+
+.me_info {
+	.mi_header {
+		height: 60px;
+		background: #181818;
+		box-shadow: 0px 0px 20px rgba(241, 241, 241, 0.1);
+		border-radius: 0px 0px 10px 10px;
+		width: 100%;
+		position: relative;
+
+		.mi_title {
+			font-size: 16px;
+			line-height: 19px;
+			color: #ffffff;
+			padding-top: 20px;
+			position: absolute;
+			transform: translateX(-50%);
+			left: 50%;
+		}
+
+		.mi_back {
+			top: 18px;
+			position: absolute;
+			left: 15px;
+		}
+	}
+
+	.mi_app {
+		display: inline-block;
+		width: 100%;
+		padding: 15px 15px;
+		box-sizing: border-box;
+
+		.mi_logo {
+			width: 100px;
+			float: left;
+		}
+
+		.mi_info-app {
+			margin-left: 115px;
+		}
+
+		h3 {
+			margin: 5px 0 10px 0;
+		}
+
+		span {
+			color: #757678;
+		}
+
+		button {
+			background: #eb1c23;
+			border-radius: 20px;
+			width: 100%;
+			color: #fff;
+			height: 40px;
+		}
+	}
+}
+
+.mi_rule {
+	color: #fff;
+	margin: 0px 15px;
+	border-top: 1px solid #363b41;
+	padding-top: 25px;
+
+	.mi_item {
+		width: 100%;
+		display: inline-block;
+		margin-bottom: 30px;
+		color: #fff;
+	}
+
+	.mi_content {
+		float: left;
+	}
+
+	.mi_open {
+		float: right;
+	}
+}
+
+.me_update{
+	.mu_header {
+		height: 60px;
+		background: #181818;
+		box-shadow: 0px 0px 20px rgba(241, 241, 241, 0.1);
+		border-radius: 0px 0px 10px 10px;
+		width: 100%;
+		position: relative;
+
+		.mu_title {
+			font-size: 16px;
+			line-height: 19px;
+			color: #ffffff;
+			padding-top: 20px;
+			position: absolute;
+			transform: translateX(-50%);
+			left: 50%;
+		}
+
+		.mu_back {
+			top: 18px;
+			position: absolute;
+			left: 15px;
+		}
+	}
+
+	.mu_info{
+		color: #fff;
+		text-align: center;
+		margin: 20px;
+		border-radius: 35%;
+		font-size: 12px;
+		line-height: 14px;
+		.mu_avt{
+			width: 76px;
+			height: 76px;
+			object-fit: cover;
+			margin-bottom: 5px;
+			border-radius: 35%;
+		}
+
+		.mu_new-avt{
+			img{
+				margin-bottom: -2px;
+				margin-right: 5px;
+			}
+		}
+	}
+}

@@ -1,0 +1,65 @@
+@import "./styles/mixin";
+@import "./styles/font";
+@import "./styles/color";
+
+
+.video_player {
+  color: #757678;
+
+  img {
+    width: 100%;
+  }
+
+  .player_tabs {
+    width: 100%;
+
+    .react-tabs__tab--selected {
+      background: rgba(0, 0, 0, 0);
+      color: #fff !important;
+      border-bottom: 2px solid;
+    }
+
+    .chat {
+      float: left;
+      text-align: center;
+      margin-left: 15%;
+      color: #757678;
+      padding-bottom: 10px;
+      outline: none;
+    }
+
+    .info {
+      float: left;
+      text-align: center;
+      //margin-left: 15%;
+      color: #757678;
+      padding-bottom: 10px;
+      outline: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .follow {
+      text-align: center;
+      float: right;
+      background-color: #363B41;
+      border-radius: 20px;
+      padding: 7px 15px;
+      color: #fff;
+      margin-right: 7%;
+      transform: translateY(-20%);
+      cursor: pointer;
+    }
+
+    .react-tabs__tab-list {
+      border: 0;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.video-detail{
+
+}

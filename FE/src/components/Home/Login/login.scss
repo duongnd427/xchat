@@ -1,0 +1,88 @@
+.login {
+	margin-top: 100px;
+	text-align: center;
+	display: grid;
+	grid-template-columns: 60% 40%;
+
+	.lg_logo {
+		color: #007ff0;
+		font-size: 50px;
+		font-weight: bold;
+	}
+
+	.lg_intro {
+		float: left;
+		height: 400px;
+	}
+
+	.lg_title {
+		font-size: 26px;
+		font-weight: bold;
+		margin: 20px 0;
+	}
+	.lg_login {
+		float: right;
+		border: 2px solid #444444;
+		// height: 280px;
+		display: table;
+		width: 400px;
+		border-radius: 10px;
+		background: #fff;
+
+		input {
+			display: grid;
+			padding: 10px;
+			margin: 20px 20px 5px 20px;
+			border-radius: 7px;
+			border: 1px solid;
+			width: 360px;
+			box-sizing: border-box;
+			outline: none;
+		}
+
+		.lg_forgot-pw {
+			text-decoration: underline;
+			color: aquamarine;
+			margin-bottom: -15px;
+		}
+	}
+
+	@mixin lg_button {
+		border: 1px solid #e6fff2;
+		padding: 10px;
+		border-radius: 20px;
+		outline: none;
+		margin: 20px;
+	}
+
+	.login-button {
+		@include lg_button();
+		background: #00ff99;
+	}
+
+	.signup-button {
+		@include lg_button();
+		background: #66a3ff;
+	}
+
+	.lg_signup {
+		height: 100%;
+		left: 0;
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 99999;
+		box-sizing: border-box;
+
+		form {
+			padding: 100px 20%;
+		}
+	}
+
+	.lg_signup-background {
+		background: #000000;
+		opacity: 0.6;
+		width: 100%;
+		height: 100%;
+	}
+}
