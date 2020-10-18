@@ -4,17 +4,16 @@ import LoginApi from '../../../services/api/Login/LoginApi';
 import Helper from '../../../utils/helpers/Helper';
 
 function Signup(props) {
-	const [suUsername, setSuUsername] = useState('');
+	const [suName, setSuName] = useState('');
 	const [suPw, setSuPw] = useState('');
-	const [suRePw, setSuRePw] = useState('');
-	const [suPhone, setSuPhone] = useState('');
+	const [suEmail, setSuEmail] = useState('');
 	// const [suAvatar, setSuAvatar] = useState('');
 
 	function _signup() {
-		LoginApi.signup(suUsername, suPhone, suPw, suRePw).then((response) => {
+		LoginApi.signup(suName, suEmail, suPw).then((response) => {
 			switch (response.data.code) {
 				case 200:
-					Helper.setCookie('info', response.data.userInfo, EXPIRES_TIME);
+					Helper.setCookie('token', response.data.userInfo, EXPIRES_TIME);
 				case 404:
 					alert('Mật khẩu không trùng khớp');
 				case 500:
@@ -27,19 +26,19 @@ function Signup(props) {
 		<div className='lg_login'>
 			<form>
 				<input
-					placeholder='Số điện thoại'
+					placeholder='Email'
 					autoComplete='off'
 					type='text'
 					onChange={(e) => {
-						setSuUsername(e.target.value);
+						setSuName(e.target.value);
 					}}
 				/>
 				<input
-					placeholder='Username'
+					placeholder='Name'
 					autoComplete='off'
 					type='text'
 					onChange={(e) => {
-						setSuPhone(e.target.value);
+						setSuEmail(e.target.value);
 					}}
 				/>
 				<input
@@ -48,14 +47,6 @@ function Signup(props) {
 					type='password'
 					onChange={(e) => {
 						setSuPw(e.target.value);
-					}}
-				/>
-				<input
-					placeholder='Nhập lại mật khẩu'
-					autoComplete='off'
-					type='password'
-					onChange={(e) => {
-						setSuRePw(e.target.value);
 					}}
 				/>
 

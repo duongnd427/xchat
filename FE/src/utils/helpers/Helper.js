@@ -638,7 +638,7 @@ function getCookie(key) {
 }
 
 function setCookie(key, value, expires = 0, path = '/') {
-	let expireStr = expires ? ';expires=' + expires.toUTCString() : '';
+	let expireStr = expires ? ';expires=' + expires : '';
 	let pathStr = ';path=' + path;
 	document.cookie = key + '=' + value + expireStr + pathStr;
 }
@@ -1336,8 +1336,8 @@ function checkFromApp() {
 }
 
 function checkLogin() {
-	let login = getCookie('userId');
-	if (login) return true;
+	let token = getCookie('token');
+	if (token) return true;
 	return false;
 }
 

@@ -6,6 +6,7 @@ const cors = require("cors");
 const apiRouter = require("./routers/apiRouter");
 const Config = require("./config");
 let app = express();
+require("dotenv").config();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

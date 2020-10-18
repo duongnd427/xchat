@@ -1,13 +1,28 @@
 import React, { useState } from 'react';
+import { EXPIRES_TIME } from '../../../config/Config';
 import LoginApi from '../../../services/api/Login/LoginApi';
+import Helper from '../../../utils/helpers/Helper';
 
 function LoginForm(props) {
-	const [username, setUsername] = useState('');
-	const [pw, setPw] = useState('');
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 
 	function _login() {
-		LoginApi.login(username, pw).then((response) => {
-			console.log(response);
+		LoginApi.login(email, password).then((response) => {
+			switch (response.data.code) {
+				case 200:
+					Helper.setCookie('token', response.data.token, EXPIRES_TIME);
+					window.location.reload();
+					break;
+				case 401:
+					alert('Email không tồn tại');
+					break;
+				case 402:
+					alert('Sai mật khẩu');
+					break;
+				default:
+					alert('Có lỗi xảy ra, vui lòng thử lại');
+			}
 		});
 	}
 
@@ -15,17 +30,19 @@ function LoginForm(props) {
 		<div className='lg_login'>
 			<form>
 				<input
-					placeholder='Username hoặc số điện thoại'
+					placeholder='Email'
 					type='text'
+					autoComplete='off'
 					onChange={(e) => {
-						setUsername(e.target.value);
+						setEmail(e.target.value);
 					}}
 				/>
 				<input
 					placeholder='Mật khẩu'
 					type='password'
+					autoComplete='off'
 					onChange={(e) => {
-						setPw(e.target.value);
+						setPassword(e.target.value);
 					}}
 				/>
 				<div className='lg_forgot-pw pointer'>Quên mật khẩu?</div>

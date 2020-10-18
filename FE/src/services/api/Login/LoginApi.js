@@ -2,21 +2,19 @@ import ApiCaller from '../../../utils/apiCaller';
 import * as Config from '../../../config/Config';
 import QueryString from 'query-string';
 
-function login(username, pw) {
-	return ApiCaller.callApiXChat(
-		Config.API_USER_LOGIN + '?username=' + username + '&password=' + pw,
-		'GET',
-		null,
-	);
+function login(email, password) {
+	let body = {
+		email: email,
+		password: password,
+	};
+	return ApiCaller.callApiXChat(Config.API_USER_LOGIN, 'POST', body);
 }
 
-function signup(phone, username, pw, repw) {
+function signup(email, name, password) {
 	let body = {
-		username: username,
-		phone: phone,
-		password: pw,
-		repassword: repw,
-		avatar: '',
+		email: email,
+		name: name,
+		password: password,
 	};
 	return ApiCaller.callApiXChat(Config.API_USER_SIGN_UP, 'POST', body);
 }

@@ -4,7 +4,7 @@
 		width: 400px;
 		float: left;
 		overflow-y: scroll;
-		height: 95vh;
+		height: calc(95vh - 60px);
 
 		.list_item {
 			height: 60px;
@@ -40,7 +40,7 @@
 	}
 
 	.detailconversation {
-		height: 95vh;
+		height: calc(95vh - 60px);
 		overflow-y: scroll;
 
 		@mixin detail_item {

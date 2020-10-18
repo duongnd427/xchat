@@ -1,63 +1,68 @@
 const express = require("express");
-const userRouter = express.Router();
-const helper = require("../helper");
+const router = express.Router();
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const User = require("../models/userModel");
+const { registerValidation, loginValidation } = require("../auth/validation");
+const verify = require("../auth/checkToken");
+const { KEY } = require("../config");
 
-const userModel = require("../models/userModel");
+router.post("/register", async function (req, res) {
+  // Validate user
+  const { error } = registerValidation(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
 
-userRouter.use("/", (req, res, next) => {
-  console.log("user router middleware");
-  next();
-});
+  // Kiểm tra email có tồn tại hay không
+  const emailExist = await User.findOne({ email: req.body.email });
+  if (emailExist)
+    return res.status(400).send({ code: 401, detail: "Email đã được đăng ký" });
 
-userRouter.post("/signup", (req, res) => {
-  const { username, password, repassword, phone, avatar } = req.body;
-  if (password === repassword) {
-    let hashpw = helper.EnXxtea(password);
-    userModel.create(
-      { username, hashpw, phone, avatar },
-      (err, userCreated) => {
-        if (err) {
-          res.status(500).send({ code: 500, err });
-        } else {
-          let userInfo = helper.EnXxtea({
-            id: userCreated._id,
-            username: userCreated.username,
-            phone: userCreated.phone,
-          });
-          res.status(200).send({ code: 200, userInfo });
-        }
-      }
-    );
-  } else {
-    res.status(404).send({ code: 404, message: "wrong password" });
-  }
-});
+  // Mã hóa password
+  const salt = await bcrypt.genSalt(10);
+  const hashPass = await bcrypt.hash(req.body.password, salt);
 
-userRouter.get("/login", async (req, res) => {
+  // Tạo user
+  const newuser = new User();
+  newuser.name = req.body.name;
+  newuser.email = req.body.email;
+  newuser.password = hashPass;
+
   try {
-    let user = await userModel.findOne({
-      username: req.query.username,
-      hashpw: helper.EnXxtea(req.query.password),
-    });
-    if (!user) {
-      res.status(404).send({ code: 404, message: "user not found" });
-    } else {
-      let userInfo = helper.EnXxtea({
-        id: user._id,
-        username: user.username,
-        phone: user.phone,
-      });
-      res.status(200).send({ code: 200, userInfo });
-    }
-  } catch (error) {
-    res.status(500).send({ code: 500 });
+    const User = await newuser.save();
+    res.send(User);
+  } catch (err) {
+    res.status(400).send(err);
   }
 });
 
-userRouter.delete("/", async (req, res) => {
+router.post("/login", async function (req, res) {
+  // Validate user
+  const { error } = loginValidation(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
+  // Kiểm tra email
+  const userLogin = await User.findOne({ email: req.body.email });
+  if (!userLogin)
+    return res.status(400).send({ code: 401, detail: "Sai email" });
+
+  // Kiểm tra password
+  const passLogin = await bcrypt.compare(req.body.password, userLogin.password);
+  if (!passLogin)
+    return res.status(400).send({ code: 402, detail: "Sai mật khẩu" });
+
+  // Ký và tạo token
+  const token = jwt.sign({ _id: userLogin._id }, process.env.SECRET_TOKEN);
+  res.header("auth-token", token).send({ code: 200, token: token });
+});
+
+router.get("/", verify, function (req, res) {
+  res.send("Chào mừng bạn đến với website của mình. Chúc bạn một ngày vui vẻ");
+});
+
+router.delete("/", async (req, res) => {
   try {
     let userDeleted = await userModel.findOneAndRemove({
-      username: req.query.username,
+      user: req.query.username,
     });
     if (!userDeleted)
       res.status(404).send({ code: 404, message: "user not found" });
@@ -67,38 +72,38 @@ userRouter.delete("/", async (req, res) => {
   }
 });
 
-userRouter.put("/", async (req, res) => {
-  try {
-    const { password, phone, avatar, displayName } = req.body;
-    const updateInfo = { password, phone, avatar, displayName };
-    console.log(req.body);
-    console.log(updateInfo);
-    let userInfo = await userModel.find({ username: req.query.username });
-    if (!userInfo)
-      res.status(404).send({ code: 404, message: "User not found" });
-    else {
-      for (let key in updateInfo) {
-        if (key == "password" && updateInfo[key]) {
-          let compare = bcrypt.compareSync(
-            updateInfo.password,
-            userInfo.hashPassword
-          );
-          if (!compare) {
-            userInfo.hashPassword = bcrypt.hashSync(
-              updateInfo.password,
-              bcrypt.genSaltSync()
-            );
-          }
-        } else if (updateInfo[key]) {
-          userInfo[key] = updateInfo[key];
-        }
-      }
-      let dataSaved = await userInfo.save();
-      res.status(200).send({ code: 200, dataSaved });
-    }
-  } catch (error) {
-    res.status(500).send({ code: 500, error });
-  }
-});
+// router.put("/", async (req, res) => {
+//   try {
+//     const { password, phone, avatar, displayName } = req.body;
+//     const updateInfo = { password, phone, avatar, displayName };
+//     console.log(req.body);
+//     console.log(updateInfo);
+//     let userInfo = await userModel.find({ username: req.query.username });
+//     if (!userInfo)
+//       res.status(404).send({ code: 404, message: "User not found" });
+//     else {
+//       for (let key in updateInfo) {
+//         if (key == "password" && updateInfo[key]) {
+//           let compare = bcrypt.compareSync(
+//             updateInfo.password,
+//             userInfo.hashPassword
+//           );
+//           if (!compare) {
+//             userInfo.hashPassword = bcrypt.hashSync(
+//               updateInfo.password,
+//               bcrypt.genSaltSync()
+//             );
+//           }
+//         } else if (updateInfo[key]) {
+//           userInfo[key] = updateInfo[key];
+//         }
+//       }
+//       let dataSaved = await userInfo.save();
+//       res.status(200).send({ code: 200, dataSaved });
+//     }
+//   } catch (error) {
+//     res.status(500).send({ code: 500, error });
+//   }
+// });
 
-module.exports = userRouter;
+module.exports = router;
